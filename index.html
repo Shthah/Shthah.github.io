@@ -92,8 +92,8 @@
           let hammertime = new Hammer(document.getElementById('sky-night-gift'));
           hammertime.get('rotate').set({ enable: true });
 
-          hammertime.on('pinch', function (ev) {
-            console.log(ev, 'pinch');
+          hammertime.on('rotate', function (ev) {
+            console.log(ev, 'rotate');
             vm.$message({
               showClose: true,
               message: 'rotateTap   rotateTap',
