@@ -6,7 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="./css/style.css">
-  <link rel="icon" href="./images/logo.png">
+  <link rel="icon" href="./images/logo.svg">
+  <!-- 引入样式 -->
+  <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+  <!-- 引入组件库 -->
+
+  <script src="./js/hammer.js"></script>
   <title>Shthah</title>
   <style>
 
@@ -14,42 +19,131 @@
 </head>
 
 <body>
-  <main id="sky-night-gift">
-    <div class="load-view">
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
-    <section class="bg">
-      <div class="bg__house"></div>
-      <div class="bg__sky"></div>
-    </section>
-    <section class="main-visual">
-      <div class="main-visual__inner">
-        <img src="./images/logo.svg" class="main-visual__logo" alt="logo" />
-      </div>
-    </section>
+  <div id="app">
+    <main id="sky-night-gift">
+      <img src="./images/logo.svg" alt="">
+    </main>
+  </div>
 
-    <!-- <footer class="footer">
-      <div class="footer__inner">
-        <img class="footer__yui540" src="./images/yui540.svg" alt="yui540" />
-        <div class="footer__line"></div>
-        <img class="footer__copyright" src="./images/copyright.svg" alt="copyright" />
-      </div>
-    </footer> -->
-  </main>
-
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/element-ui/lib/index.js"></script>
   <script>
-    (function() {
-      var load_view = document.getElementsByClassName('load-view')[0]
-      load_view.addEventListener('animationend', function(e) {
-        if(e.animationName === 'fadeout') {
-          load_view.style.display = 'none'
+    let vm = new Vue({
+      el: '#app',
+      data: function () {
+        return { visible: false }
+      },
+      mounted() {
+        this.Tap();
+        this.dbTap();
+        this.pressTap();
+        this.pinchTap();
+        this.rotateTap();
+        // this.panTap();
+        // this.swipeTap();
+      },
+      methods: {
+        Tap() {
+          let hammertime = new Hammer(document.getElementById('sky-night-gift'));
+          hammertime.on('tap', function (ev) {
+            console.log(ev, 'tap');
+            vm.$message({
+              showClose: true,
+              message: 'tap tap tap  tap',
+              type: 'error'
+            });
+          });
+        },
+        dbTap() {
+          let hammertime = new Hammer(document.getElementById('sky-night-gift'));
+          hammertime.on('doubletap', function (ev) {
+            console.log(ev, 'doubletap');
+            vm.$message({
+              showClose: true,
+              message: 'doubletap doubletap doubletap ',
+              type: 'error'
+            });
+          });
+        },
+        pressTap() {
+          let hammertime = new Hammer(document.getElementById('sky-night-gift'));
+          hammertime.on('press', function (ev) {
+            console.log(ev, 'press');
+            vm.$message({
+              showClose: true,
+              message: 'press press press',
+              type: 'error'
+            });
+          });
+        },
+        pinchTap() {
+          let hammertime = new Hammer(document.getElementById('sky-night-gift'));
+          hammertime.get('pinch').set({ enable: true });
+          hammertime.on('pinch', function (ev) {
+            console.log(ev, 'pinch');
+            vm.$message({
+              showClose: true,
+              message: 'pinchTap   pinchTap',
+              type: 'error'
+            });
+          });
+        },
+        rotateTap() {
+          let hammertime = new Hammer(document.getElementById('sky-night-gift'));
+          hammertime.get('rotate').set({ enable: true });
+
+          hammertime.on('pinch', function (ev) {
+            console.log(ev, 'pinch');
+            vm.$message({
+              showClose: true,
+              message: 'rotateTap   rotateTap',
+              type: 'error'
+            });
+          });
+        },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        panTap() {
+          let hammertime = new Hammer(document.getElementById('sky-night-gift'));
+          hammertime.on('pan', function (ev) {
+            console.log(ev, 'pan');
+            vm.$message({
+              showClose: true,
+              message: 'pan pan pan panpan pan pan',
+              type: 'error'
+            });
+          });
+        },
+        swipeTap() {
+          let hammertime = new Hammer(document.getElementById('sky-night-gift'));
+          hammertime.on('swipe', function (ev) {
+            console.log(ev, 'swipe');
+            vm.$message({
+              showClose: true,
+              message: 'swipeswipeswipeswipeswipeswipe',
+              type: 'error'
+            });
+          });
         }
-      })
-    })()
+      }
+    })
+
   </script>
 </body>
 
