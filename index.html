@@ -10,8 +10,10 @@
   <!-- 引入样式 -->
   <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
   <!-- 引入组件库 -->
-
   <script src="./js/hammer.js"></script>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+  <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
   <title>Shthah</title>
   <style>
 
@@ -23,10 +25,23 @@
     <main id="sky-night-gift">
       <img src="./images/logo.svg" alt="">
     </main>
+    <div id="gitalk-container"></div>
   </div>
 
   <script src="https://unpkg.com/vue/dist/vue.js"></script>
   <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+  <script>
+    var gitalk = new Gitalk({
+      clientID: '4d1cdfa253f8b2179476',
+      clientSecret: 'd8770c892488de7a7500a8b2f764052b6e3f8bc5',
+      repo: 'https://github.com/Shthah/blog-comment',
+      owner: 'Shthah',
+      admin: ['Shthah'],
+      distractionFreeMode: false  // Facebook-like distraction free mode
+    })
+
+    gitalk.render('gitalk-container')
+  </script>
   <script>
     let vm = new Vue({
       el: '#app',
